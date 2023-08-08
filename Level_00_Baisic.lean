@@ -3,4 +3,3 @@ structure Point (α : ℝ) where
   y : ℝ
 
 notation `ℂ` := complex
-
