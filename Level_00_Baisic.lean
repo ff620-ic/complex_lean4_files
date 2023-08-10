@@ -22,6 +22,11 @@ def zero : ℂ := ⟨0, 0⟩
 
 instance HasZero : ℂ := zero
 
+#check (complex.re(mk 3 4) : ℂ) : ℝ = 3
+
+@[simp] lemma zero_re : complex.re(0 : ℂ) = 0 := by rfl
+@[simp] lemma zero_im : im(0 : ℂ) = 0 := by rfl
+
 def re_one : ℂ := ⟨1, 0⟩
 
 def im_one : ℂ := ⟨0, 1⟩
