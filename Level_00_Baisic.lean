@@ -20,13 +20,20 @@ namespace complex
 
 def zero : ℂ := ⟨0, 0⟩
 
-instance : OfNat ℂ := ⟨zero⟩
+instance HasZero : ℂ := zero
 
-def one : ℂ := ⟨1, 0⟩
+def re_one : ℂ := ⟨1, 0⟩
 
-instance : HasOne ℂ := ⟨one⟩
+def im_one : ℂ := ⟨0, 1⟩
+
+instance HasOne : ℂ := re_one
 
 def add (z w : ℂ) : ℂ := ⟨z.re + w.re, z.im + w.im⟩
 
+instance : Add ℂ := ⟨add⟩
+
 def mul (z w : ℂ) : ℂ := ⟨z.re * w.re - z.im * w.im, z.re * w.im + z.im * w.re⟩
 
+instance : Mul ℂ := ⟨mul⟩
+
+end complex
