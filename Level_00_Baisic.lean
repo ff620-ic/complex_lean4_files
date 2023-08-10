@@ -1,6 +1,8 @@
+import Mathlib.Data.Real.Basic
+
 structure complex where
-re : Nat
-im : Nat
+re : ℝ
+im : ℝ
 
 notation "ℂ" => complex
 
@@ -8,7 +10,7 @@ notation "ℂ" => complex
 
 def zero : ℂ := ⟨0, 0⟩
 
-instance : HasZero ℂ := ⟨zero⟩
+instance : OfNat ℂ := ⟨zero⟩
 
 def one : ℂ := ⟨1, 0⟩
 
