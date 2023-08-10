@@ -8,6 +8,16 @@ notation "ℂ" => complex
 
 #check complex.mk 10 20
 
+example : ℂ := complex.mk 3 4
+
+example : ℂ := ⟨3, 4⟩
+
+example : complex.mk 3 4 = ⟨3, 4⟩ := by rfl
+
+namespace complex
+
+--example : re(mk 3 4) = 3 := by rfl
+
 def zero : ℂ := ⟨0, 0⟩
 
 instance : OfNat ℂ := ⟨zero⟩
