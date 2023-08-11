@@ -1,8 +1,11 @@
 import Mathlib.Data.Real.Basic
 
+@[ext]
 structure complex where
 re : ℝ
 im : ℝ
+
+#check complex.ext
 
 notation "ℂ" => complex
 
@@ -16,29 +19,113 @@ example : complex.mk 3 4 = ⟨3, 4⟩ := by rfl
 
 namespace complex
 
---example : re(mk 3 4) = 3 := by rfl
+example : ℝ := (mk 3 4).re
 
-def zero : ℂ := ⟨0, 0⟩
+instance : Zero complex :=
+  ⟨⟨0, 0⟩⟩
 
-instance HasZero : ℂ := zero
+instance : One complex :=
+  ⟨⟨1, 0⟩⟩
 
-#check (complex.re(mk 3 4) : ℂ) : ℝ = 3
+instance : Neg complex :=
+  ⟨fun x ↦ ⟨-x.re, -x.im⟩⟩
 
-@[simp] lemma zero_re : complex.re(0 : ℂ) = 0 := by rfl
-@[simp] lemma zero_im : im(0 : ℂ) = 0 := by rfl
+instance : Add complex :=
+  ⟨fun x y ↦ ⟨x.re + y.re, x.im + y.im⟩⟩
 
-def re_one : ℂ := ⟨1, 0⟩
+instance : Mul complex :=
+  ⟨fun x y ↦ ⟨x.re * y.re - x.im * y.im, x.re * y.im + x.im * y.re⟩⟩
 
-def im_one : ℂ := ⟨0, 1⟩
+@[simp]
+theorem zero_re : (0 : complex).re = 0 :=
+  rfl
 
-instance HasOne : ℂ := re_one
+@[simp]
+theorem zero_im : (0 : complex).im = 0 :=
+  rfl
 
-def add (z w : ℂ) : ℂ := ⟨z.re + w.re, z.im + w.im⟩
+@[simp]
+theorem one_re : (1 : complex).re = 1 :=
+  rfl
 
-instance : Add ℂ := ⟨add⟩
+@[simp]
+theorem one_im : (1 : complex).im = 0 :=
+  rfl
 
-def mul (z w : ℂ) : ℂ := ⟨z.re * w.re - z.im * w.im, z.re * w.im + z.im * w.re⟩
+@[simp]
+theorem add_re (x y : complex) : (x + y).re = x.re + y.re :=
+  rfl
 
-instance : Mul ℂ := ⟨mul⟩
+@[simp]
+theorem add_im (x y : complex) : (x + y).im = x.im + y.im :=
+  rfl
+
+@[simp]
+theorem neg_re (x : complex) : (-x).re = -x.re :=
+  rfl
+
+@[simp]
+theorem neg_im (x : complex) : (-x).im = -x.im :=
+  rfl
+
+@[simp]
+theorem mul_re (x y : complex) : (x * y).re = x.re * y.re - x.im * y.im :=
+  rfl
+
+@[simp]
+theorem mul_im (x y : complex) : (x * y).im = x.re * y.im + x.im * y.re :=
+  rfl
+
+instance instCommRing : CommRing ℂ where
+  zero := 0
+  one := 1
+  add := (· + ·)
+  neg x := -x
+  mul := (· * ·)
+  add_assoc := by
+    intros
+    ext <;> simp <;> ring
+  zero_add := by
+    intro
+    ext <;> simp
+  add_zero := by
+    intro
+    ext <;> simp
+  add_left_neg := by
+    intro
+    ext <;> simp
+  add_comm := by
+    intros
+    ext <;> simp <;> ring
+  mul_assoc := by
+    intros
+    ext <;> simp <;> ring
+  one_mul := by
+    intro
+    ext <;> simp
+  mul_one := by
+    intro
+    ext <;> simp
+  left_distrib := by
+    intros
+    ext <;> simp <;> ring
+  right_distrib := by
+    intros
+    ext <;> simp <;> ring
+  mul_comm := by
+    intros
+    ext <;> simp <;> ring
+  zero_mul := by
+    intro
+    ext <;> simp
+  mul_zero := by
+    intro
+    ext <;> simp
+
+instance : Nontrivial complex := by
+  use 0, 1
+  rw [Ne, complex.ext_iff]
+  simp
 
 end complex
+
