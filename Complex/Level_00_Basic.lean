@@ -2,8 +2,8 @@ import Mathlib.Data.Real.Basic
 
 @[ext]
 structure complex where
-re : ℝ
-im : ℝ
+  re : ℝ
+  im : ℝ
 
 #check complex.ext
 

@@ -1,14 +1,12 @@
 import Lake
 open Lake DSL
 
-package «complex_lean4_files» {
-  -- add any package configuration options here
-}
+package Complex where
+  moreLeanArgs := #["-Dtactic.hygienic=false"]
+  moreServerArgs := #["-Dtactic.hygienic=false"]
 
 require mathlib from git
   "https://github.com/leanprover-community/mathlib4.git"
 
 @[default_target]
-lean_lib «ComplexLean4Files» {
-  -- add any library configuration options here
-}
+lean_lib Complex
