@@ -45,12 +45,28 @@ theorem of_real_one : ((1 : ℝ) : ℂ) = 1 :=
 
 @[simp, norm_cast]
 theorem of_real_add (r s : ℝ) : ((r + s : ℝ) : ℂ) = r + s :=
-  rfl
+  complex.ext (add_re _ _) (add_im _ _)
 
 @[simp, norm_cast]
 lemma of_real_neg (r : ℝ) : ((-r : ℝ) : ℂ) = -r := 
-  complex.ext (neg_re _) (neg_im _)
+  rfl
 
 @[simp, norm_cast]
 lemma of_real_mul (r s : ℝ) : ((r * s : ℝ) : ℂ) = r * s :=
   complex.ext (mul_re _ _) (mul_im _ _)
+
+def Of_real : ℝ →+* ℂ :=
+{ toFun := of_real, -- use the coercion from ℝ to ℂ
+  map_zero' := of_real_zero,
+  map_one' := of_real_one,
+  map_add' := of_real_add,
+  map_mul' := of_real_mul,
+}
+
+@[simp, norm_cast] lemma of_real_bit0 (r : ℝ) : ((bit0 r : ℝ) : ℂ) = bit0 r :=
+  rfl
+
+@[simp, norm_cast] lemma of_real_bit1 (r : ℝ) : ((bit1 r : ℝ) : ℂ) = bit1 r :=
+  rfl
+
+end complex
