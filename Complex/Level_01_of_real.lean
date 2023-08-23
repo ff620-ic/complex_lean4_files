@@ -4,7 +4,7 @@ namespace complex
 
 def of_real (r : ℝ) : ℂ := ⟨r, 0⟩
 
-instance : Coe ℝ ℂ := ⟨of_real⟩
+instance has_coe : ℝ ℂ := ⟨of_real⟩
 
 @[simp, norm_cast]
 lemma of_real_re (r : ℝ) : (r : ℂ).re = r := 
