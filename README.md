@@ -16,3 +16,5 @@ Open the relevant project files in VS Code and fill in all the sorrys.
 Level 1: the natural map from the reals to the complexes, is at Complex/Level_01_of_real.lean
 
 Level 2: sqrt(-1), is at Complex/Level_02_I.lean
+
+Level 3 and after have not been translated yet.
