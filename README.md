@@ -4,6 +4,8 @@ This is the lean4 version of the complex number game，which we tried to transla
 
 For lean3 version of the complex number game, see https://github.com/ImperialCollegeLondon/complex-number-game.git
 
+                                                             ---Translated by Kathy Su and Fanglan Feng
+
 # Instructions
 ## The tutorial Level
 Level 0: The tutorial level, is at Complex/Level_00_basic.lean. All solutions are given. Read through this code first, and refer back to it if necessary.
